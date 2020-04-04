@@ -139,7 +139,7 @@ This controls the appearance of the filled background plot. The `.lineStyle` mod
 
 ### Example
 
-![BGLineChart Example](https://i.imgur.com/s1SMucp.png "Background Line Chart")
+<img src="https://i.imgur.com/s1SMucp.png" width="400">
 
 **Code sample above example:**
 ```swift
