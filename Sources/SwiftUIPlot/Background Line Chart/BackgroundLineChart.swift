@@ -57,6 +57,7 @@ public struct BackgroundLineChart: View {
                                     BackgroundLineStack(xvalues: self.model.xvals,
                                                         backgroundValues: self.model.backgroundyvals,
                                                         foregroundValues: self.model.foregroundyvals,
+                                                        ylim: self.model.ylim,
                                                         proxy: reader,
                                                         backgrounddesign: self.design.backgroundlineDesign,
                                                         foregrounddesign: self.design.foregroundlineDesign)

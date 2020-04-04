@@ -13,6 +13,7 @@ struct BackgroundLineStack: View {
     let xvalues: [Double]
     let backgroundValues: [Double]
     let foregroundValues: [Double]
+    let ylim: [Double]
     let proxy: GeometryProxy
     let backgrounddesign: LineChartCustomization.LineCustomization
     let foregrounddesign: LineChartCustomization.LineCustomization
@@ -27,6 +28,7 @@ struct BackgroundLineStack: View {
                 .fill(backgrounddesign.shadedColor)
             CubicBezier(xvalues: xvalues,
                         yvalues: foregroundValues,
+                        ylim: ylim,
                         in: proxy.frame(in: .global))
                 .trim(from: 0, to: trimming ? 1 : 0)
                 .stroke(style: StrokeStyle(lineWidth: foregrounddesign.lineWidth,
