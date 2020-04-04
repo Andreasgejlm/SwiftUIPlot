@@ -14,13 +14,8 @@ public struct LineChart: View {
     var design: LineChartCustomization
     @State var show = false
     
-    public init(xvals: [Double] = [], yvals: [Double], xlabels: [String]? = nil) {
-        let ys = yvals
-        let xs: [Double] = xvals.count > 0 ? xvals : ys.enumerated().map { Double($0.offset) }
-        let xl: [Double] = [xs.min() ?? 0, xs.max() ?? 1]
-        let yl: [Double] = [yvals.min() ?? 0, yvals.max() ?? 1]
-
-        self.model = LineChartModel(xs: xs, ys: ys, xlabels: xlabels, xlim: xl, ylim: yl)
+    public init(data: [LineChartInputData], xlabels: [String]? = nil) {
+        self.model = LineChartModel(data: data, xlabels: xlabels)
         self.design = LineChartCustomization()
     }
     
@@ -45,11 +40,13 @@ public struct LineChart: View {
                                         VerticalGridLines(labels: self.model.xlabels,
                                                           design: self.design.verticalGridLineDesign)
                                     }
-                                    
-                                    SingleLineStack(xvalues: self.model.xvals,
-                                              yvalues: self.model.yvals,
-                                              proxy: reader,
-                                              design: self.design.lineDesign)                                    
+                                    ForEach(self.model.data) { inputData in
+                                        SingleLine(xvalues: inputData.xvalues,
+                                                   yvalues: inputData.yvalues,
+                                                   proxy: reader,
+                                                   type: inputData.plotType)
+                                            .foregroundColor(inputData.color)
+                                    }
                                 }
                             }
                             .frame(width: proxy.size.width - self.design.yAxisDesign.dimension,
@@ -77,22 +74,6 @@ extension LineChart {
         let copy = self
         copy.design.backgroundStyling.color = color
         copy.design.backgroundStyling.cornerRadius = cornerRadius
-        return copy
-    }
-    
-    public func shaded(shadowColor: Color = .gray) -> Self {
-        let copy = self
-        copy.design.lineDesign.shaded = true
-        copy.design.lineDesign.shadedColor = shadowColor
-        return copy
-    }
-    
-    public func lineStyle(width: CGFloat = 2, color: Color = .black, dashFrequency: CGFloat = 1.0, animation: Animation? = nil) -> Self {
-        let copy = self
-        copy.design.lineDesign.lineWidth = width
-        copy.design.lineDesign.lineColor = color
-        copy.design.lineDesign.dashFreq = dashFrequency
-        copy.design.lineDesign.animation = animation
         return copy
     }
     
