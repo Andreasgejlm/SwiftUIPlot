@@ -74,15 +74,15 @@ The appearance of the LineChart view can, in addition to the default view modifi
 ```swift
 VStack(spacing: 10) {
     LineChart(yvals: [29, 43, 12, 120])
-        .padding([.top, .trailing])
+        .padding(.top)
+        
     LineChart(xvals: [10, 11, 12, 13], yvals: [29, 43, 12, 120])
-        .padding(.trailing)
+    
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .padding(.trailing)
+    
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .padding(.trailing)
+    
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .padding(.trailing)
 }
 ```
 **Code sample for modifier example:**
@@ -93,6 +93,7 @@ VStack(spacing: 10) {
         .horizontalAxisStyle(height: 30)
         .backgroundStyle(color: Color.blue.opacity(0.2),
                          cornerRadius: 20)
+                         
     LineChart(xvals: [10, 11, 12, 13], yvals: [29, 43, 12, 120])
         .verticalAxisStyle(width: 30)
         .horizontalAxisStyle(height: 30)
@@ -100,20 +101,20 @@ VStack(spacing: 10) {
                    color: Color.orange.opacity(0.7),
                    dashFrequency: 10)
         .shaded(shadowColor: Color.orange.opacity(0.2))
-        .padding(.trailing)
+        
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
         .verticalAxisStyle(width: 30)
         .horizontalAxisStyle(height: 30)
         .horizontalGridStyle(gridLineWidth: 1,
                              gridLineDashFrequency: 15)
-        .padding(.trailing)
+                             
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
         .verticalAxisStyle(width: 30)
         .horizontalAxisStyle(height: 30)
         .verticalGridStyle(gridLineColor: Color.red.opacity(0.5),
                            gridLineWidth: 2,
                            gridLineDashFrequency: 5)
-        .padding(.trailing)
+
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
         .verticalAxisStyle(showText: false,
                            width: 0)
@@ -121,7 +122,6 @@ VStack(spacing: 10) {
                              height: 30)
         .horizontalGridStyle()
         .verticalGridStyle()
-        .padding(.trailing)
 }
 ```
 
@@ -146,11 +146,13 @@ This controls the appearance of the filled background plot. The `.lineStyle` mod
 VStack(spacing: 10) {
     BackgroundLineChart(backgroundyvals: [10, 12, 20, 14, 24, 50, 21, 24, 10],
                         foregroundyvals: [11, 12, 18, 15, 28])
+                        
     BackgroundLineChart(xvals: [21, 22, 23, 24, 35, 36, 37, 38, 39],
                         backgroundyvals: [10, 12, 20, 14, 24, 50, 21, 24, 10],
                         foregroundyvals: [11, 12, 18, 15, 28, 40, 36, 21])
         .backgroundShadowColor(Color.blue.opacity(0.4))
         .lineStyle(dashFrequency: 10)
+        
     BackgroundLineChart(backgroundyvals: [10, 12, 20, 14, 24, 50, 21, 24, 10],
                         foregroundyvals: [11, 12, 18, 15, 28],
                         xlabels: ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"])
