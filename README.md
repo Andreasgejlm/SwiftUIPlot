@@ -1,7 +1,10 @@
 # SwiftUIPlot
 
 Customizable plotting tool implemented using SwiftUI.
-Currently, only a line plot and a "background" line plot is supported.
+Supports:
+
+* Line chart
+* Background line chart
 
 ## Installation
 
@@ -10,7 +13,7 @@ The package requires iOS 13.0+ and XCode 11.
 Installation is done through Swift Package Manager:
 Go to `File -> Swift Packages -> Add Package Dependency` and paste the url to this repository.
 
-Then, in the file in which the plot is used, import using `import SwiftUIPlot`.
+Then, at the top of the file, insert `import SwiftUIPlot`.
 
 
 ## Single Line Chart
