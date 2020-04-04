@@ -79,10 +79,6 @@ VStack(spacing: 10) {
     LineChart(xvals: [10, 11, 12, 13], yvals: [29, 43, 12, 120])
     
     LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-    
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-    
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
 }
 ```
 **Code sample for modifier example:**
