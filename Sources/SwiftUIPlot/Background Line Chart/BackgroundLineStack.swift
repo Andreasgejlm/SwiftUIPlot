@@ -23,6 +23,7 @@ struct BackgroundLineStack: View {
         ZStack {
             CubicBezier(xvalues: xvalues,
                         yvalues: backgroundValues,
+                        ylim: ylim,
                         in: proxy.frame(in: .global),
                         closed: true)
                 .fill(backgrounddesign.shadedColor)

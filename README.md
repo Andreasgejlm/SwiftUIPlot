@@ -137,63 +137,23 @@ The modifiers from the LineChart are also usable here, in addition to the modifi
 
 This controls the appearance of the filled background plot. The `.lineStyle` modifier only affects the foreground line.
 
-### Examples
+### Example
 
-| Simple Initialization | Modifier example |
-| ------- | ------- |
-|![Simple initializations](https://i.imgur.com/nlmXyjY.png "Simple inits") | ![Modifiers](https://i.imgur.com/U6XDrzr.png "Modifier usage") |
+![BGLineChart Example](https://i.imgur.com/s1SMucp.png "Background Line Chart")
 
-**Code sample for simple initialization:**
+**Code sample above example:**
 ```swift
 VStack(spacing: 10) {
-    LineChart(yvals: [29, 43, 12, 120])
-        .padding([.top, .trailing])
-    LineChart(xvals: [10, 11, 12, 13], yvals: [29, 43, 12, 120])
-        .padding(.trailing)
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .padding(.trailing)
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .padding(.trailing)
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .padding(.trailing)
-}
-```
-**Code sample for modifier example:**
-```swift
-VStack(spacing: 10) {
-    LineChart(yvals: [29, 43, 12, 120])
-        .verticalAxisStyle(width: 30)
-        .horizontalAxisStyle(height: 30)
-        .backgroundStyle(color: Color.blue.opacity(0.2),
-                         cornerRadius: 20)
-    LineChart(xvals: [10, 11, 12, 13], yvals: [29, 43, 12, 120])
-        .verticalAxisStyle(width: 30)
-        .horizontalAxisStyle(height: 30)
-        .lineStyle(width: 3,
-                   color: Color.orange.opacity(0.7),
-                   dashFrequency: 10)
-        .shaded(shadowColor: Color.orange.opacity(0.2))
-        .padding(.trailing)
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .verticalAxisStyle(width: 30)
-        .horizontalAxisStyle(height: 30)
-        .horizontalGridStyle(gridLineWidth: 1,
-                             gridLineDashFrequency: 15)
-        .padding(.trailing)
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .verticalAxisStyle(width: 30)
-        .horizontalAxisStyle(height: 30)
-        .verticalGridStyle(gridLineColor: Color.red.opacity(0.5),
-                           gridLineWidth: 2,
-                           gridLineDashFrequency: 5)
-        .padding(.trailing)
-    LineChart(yvals: [29, 43, 12, 120], xlabels: ["Jan", "Feb", "Mar", "Apr"])
-        .verticalAxisStyle(showText: false,
-                           width: 0)
-        .horizontalAxisStyle(textColor: Color.blue,
-                             height: 30)
-        .horizontalGridStyle()
-        .verticalGridStyle()
-        .padding(.trailing)
+    BackgroundLineChart(backgroundyvals: [10, 12, 20, 14, 24, 50, 21, 24, 10],
+                        foregroundyvals: [11, 12, 18, 15, 28])
+    BackgroundLineChart(xvals: [21, 22, 23, 24, 35, 36, 37, 38, 39],
+                        backgroundyvals: [10, 12, 20, 14, 24, 50, 21, 24, 10],
+                        foregroundyvals: [11, 12, 18, 15, 28, 40, 36, 21])
+        .backgroundShadowColor(Color.blue.opacity(0.4))
+        .lineStyle(dashFrequency: 10)
+    BackgroundLineChart(backgroundyvals: [10, 12, 20, 14, 24, 50, 21, 24, 10],
+                        foregroundyvals: [11, 12, 18, 15, 28],
+                        xlabels: ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"])
+        .backgroundShadowColor(Color.green.opacity(0.5))
 }
 ```
