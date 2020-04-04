@@ -127,7 +127,15 @@ VStack(spacing: 10) {
 
 
 ## Background Line Chart
-
-
+The background line chart shows two datasets; background and foreground data.
+The chart is initialized with the required arguments `backgroundyvals` and `foregroundyvals`, and the optional arguments identical to the LineChart, `xvals` and `xlabels`.
 
 ### Modifiers
+The modifiers from the LineChart are also usable here, in addition to the modifier:
+
+`.backgroundShadowColor(_ shadowColor: Color = .gray)`
+
+This controls the appearance of the filled background plot. The `.lineStyle` modifier only affects the foreground line.
+
+### Example
+
