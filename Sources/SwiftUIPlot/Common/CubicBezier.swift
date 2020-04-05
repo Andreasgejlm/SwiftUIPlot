@@ -16,9 +16,10 @@ struct CubicBezier: Shape {
     let type: LineChartInputData.CurveType
     private let closed: Bool
     
-    init(points: [CGPoint], controlPointLength: CGFloat = 0.5) {
+    init(points: [CGPoint], controlPointLength: CGFloat = 0.5, type: LineChartInputData.CurveType = .cubicBezier) {
         self.points = points
         cpl = controlPointLength
+        self.type = type
         self.closed = false
     }
     
