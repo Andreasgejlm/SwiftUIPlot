@@ -21,12 +21,12 @@ struct CubicBezier: Shape {
         self.closed = false
     }
     
-    init(xvalues: [Double], yvalues: [Double], ylim: [Double] = [], in rect: CGRect, controlPointLength: CGFloat = 0.5, closed: Bool = false) {
+    init(xvalues: [Double], yvalues: [Double], xlim: [Double], ylim: [Double] = [], in rect: CGRect, controlPointLength: CGFloat = 0.5, closed: Bool = false) {
         cpl = controlPointLength
         let height: CGFloat = rect.height
         let width: CGFloat = rect.width
-        let minx: Double = xvalues.min() ?? 0
-        let maxx: Double = xvalues.max() ?? 1
+        let maxx: Double = xlim.count > 0 ? xlim[1] : xvalues.max() ?? 1
+        let minx: Double = xlim.count > 0 ? xlim[0] : xvalues.min() ?? 0
         let spanx: CGFloat = CGFloat(maxx - minx)
         let pxPerx: CGFloat = width / spanx
         

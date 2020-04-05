@@ -19,7 +19,7 @@ public struct LineChartInputData: Identifiable {
     let color: Color
     
     public init(xvalues: [Double] = [], yvalues: [Double], plotType: PlotType = .stroke(), curveType: CurveType = .cubicBezier, color: Color = .black) {
-        self.xvalues = xvalues.count > 0 ? xvalues : yvalues.enumerated().map { Double($0.offset) }
+        self.xvalues = xvalues.count == yvalues.count ? xvalues : yvalues.enumerated().map { Double($0.offset) }
         self.yvalues = yvalues
         self.plotType = plotType
         self.curveType = curveType

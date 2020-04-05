@@ -12,13 +12,15 @@ import SwiftUI
 struct SingleLine: View {
     let xvalues: [Double]
     let yvalues: [Double]
+    let xlim: [Double]
     let ylim: [Double]
     let proxy: GeometryProxy
     let type: LineChartInputData.PlotType
     
-    init(xvalues: [Double], yvalues: [Double], ylim: [Double], proxy: GeometryProxy, type: LineChartInputData.PlotType) {
+    init(xvalues: [Double], yvalues: [Double], xlim: [Double], ylim: [Double], proxy: GeometryProxy, type: LineChartInputData.PlotType) {
         self.xvalues = xvalues
         self.yvalues = yvalues
+        self.xlim = xlim
         self.ylim = ylim
         self.proxy = proxy
         self.type = type
@@ -29,6 +31,7 @@ struct SingleLine: View {
         case .stroke(let width, let dashFreq):
             return AnyView(CubicBezier(xvalues: xvalues,
                                        yvalues: yvalues,
+                                       xlim: xlim,
                                        ylim: ylim,
                                        in: proxy.frame(in: .global))
                                 .stroke(style: StrokeStyle(lineWidth: width,
@@ -37,6 +40,7 @@ struct SingleLine: View {
         case .fill:
             return AnyView(CubicBezier(xvalues: xvalues,
                                        yvalues: yvalues,
+                                       xlim: xlim,
                                        ylim: ylim,
                                        in: proxy.frame(in: .global),
                                        closed: true))
