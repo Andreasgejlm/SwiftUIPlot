@@ -12,19 +12,10 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct CubicBezier: Shape {
     var points: [CGPoint]
-    let cpl: CGFloat
     let type: LineChartInputData.CurveType
     private let closed: Bool
     
-    init(points: [CGPoint], controlPointLength: CGFloat = 0.5, type: LineChartInputData.CurveType = .cubicBezier) {
-        self.points = points
-        cpl = controlPointLength
-        self.type = type
-        self.closed = false
-    }
-    
     init(xvalues: [Double], yvalues: [Double], xlim: [Double], ylim: [Double] = [], type: LineChartInputData.CurveType = .cubicBezier, in rect: CGRect, controlPointLength: CGFloat = 0.5, closed: Bool = false) {
-        cpl = controlPointLength
         let height: CGFloat = rect.height
         let width: CGFloat = rect.width
         let maxx: Double = xlim.count > 0 ? xlim[1] : xvalues.max() ?? 1
@@ -94,7 +85,7 @@ struct CubicBezier: Shape {
                 var bilinear: CGPoint = p3 - p1
                 var h: CGFloat = p2.x - p1.x
                 h = h < 100 ? h : p3.x - p2.x
-                cp2 = p2 - (bilinear.norm() * h * cpl)
+                cp2 = p2 - (bilinear.norm() * h / 2.0)
                 
                 path.addCurve(to: p2, control1: cp1, control2: cp2)
             }

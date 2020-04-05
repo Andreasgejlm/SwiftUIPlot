@@ -17,13 +17,15 @@ public struct LineChartInputData: Identifiable {
     let plotType: PlotType
     let curveType: CurveType
     let color: Color
+    let animation: Animation?
     
-    public init(xvalues: [Double] = [], yvalues: [Double], plotType: PlotType = .stroke(), curveType: CurveType = .cubicBezier, color: Color = .black) {
+    public init(xvalues: [Double] = [], yvalues: [Double], plotType: PlotType = .stroke(), curveType: CurveType = .cubicBezier, color: Color = .black, animation: Animation? = nil) {
         self.xvalues = xvalues.count == yvalues.count ? xvalues : yvalues.enumerated().map { Double($0.offset) }
         self.yvalues = yvalues
         self.plotType = plotType
         self.curveType = curveType
         self.color = color
+        self.animation = animation
     }
     
     public enum PlotType {
