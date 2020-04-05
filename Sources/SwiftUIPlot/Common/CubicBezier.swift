@@ -13,6 +13,7 @@ import SwiftUI
 struct CubicBezier: Shape {
     var points: [CGPoint]
     let cpl: CGFloat
+    let type: LineChartInputData.CurveType
     private let closed: Bool
     
     init(points: [CGPoint], controlPointLength: CGFloat = 0.5) {
@@ -21,7 +22,7 @@ struct CubicBezier: Shape {
         self.closed = false
     }
     
-    init(xvalues: [Double], yvalues: [Double], xlim: [Double], ylim: [Double] = [], in rect: CGRect, controlPointLength: CGFloat = 0.5, closed: Bool = false) {
+    init(xvalues: [Double], yvalues: [Double], xlim: [Double], ylim: [Double] = [], type: LineChartInputData.CurveType = .cubicBezier, in rect: CGRect, controlPointLength: CGFloat = 0.5, closed: Bool = false) {
         cpl = controlPointLength
         let height: CGFloat = rect.height
         let width: CGFloat = rect.width
@@ -41,6 +42,7 @@ struct CubicBezier: Shape {
         points = yPositions.enumerated().map { CGPoint(x: xPositions[$0.offset], y: $0.element) }
         
         self.closed = closed
+        self.type = type
         if closed {
             points.append(CGPoint(x: xPositions.last ?? 0, y: height))
             points.append(CGPoint(x: 0, y: height))
@@ -68,39 +70,47 @@ struct CubicBezier: Shape {
             path.addLines(points)
             return path
         }
+        
         let closedOffset: Int = closed ? 2 : 0
-        for i in 2..<points.count - closedOffset {
-            p1 = points[i - 2]
-            p2 = points[i - 1]
-            p3 = points[i]
-            
-            if i == 2 {
-                let mid = midpoint(between: (p1, p2))
-                cp1 = oneEndedControlPoint(points: (p1, mid))
+        
+        switch type {
+        case .segmentedLines:
+            path.addLines(points)
+            return path
+        default:
+            for i in 2..<points.count - closedOffset {
+                p1 = points[i - 2]
+                p2 = points[i - 1]
+                p3 = points[i]
+                
+                if i == 2 {
+                    let mid = midpoint(between: (p1, p2))
+                    cp1 = oneEndedControlPoint(points: (p1, mid))
+                } else {
+                    cp1 = controlPoint(from: p1, prevCP: cp2)
+                }
+                
+                var bilinear: CGPoint = p3 - p1
+                var h: CGFloat = p2.x - p1.x
+                h = h < 100 ? h : p3.x - p2.x
+                cp2 = p2 - (bilinear.norm() * h * cpl)
+                
+                path.addCurve(to: p2, control1: cp1, control2: cp2)
+            }
+            if closed {
+                cp2 = controlPoint(from: p2, prevCP: cp2)
+                cp1 = oneEndedControlPoint(points: (p3, p2))
+                path.addCurve(to: p3, control1: cp2, control2: cp1)
+                path.addLine(to: points[points.count - 2])
+                path.addLine(to: points.last ?? .zero)
             } else {
-                cp1 = controlPoint(from: p1, prevCP: cp2)
+                cp2 = controlPoint(from: p2, prevCP: cp2)
+                cp1 = oneEndedControlPoint(points: (p3, p2))
+                path.addCurve(to: p3, control1: cp2, control2: cp1)
             }
             
-            var bilinear: CGPoint = p3 - p1
-            var h: CGFloat = p2.x - p1.x
-            h = h < 100 ? h : p3.x - p2.x
-            cp2 = p2 - (bilinear.norm() * h * cpl)
-            
-            path.addCurve(to: p2, control1: cp1, control2: cp2)
+            return path
         }
-        if closed {
-            cp2 = controlPoint(from: p2, prevCP: cp2)
-            cp1 = oneEndedControlPoint(points: (p3, p2))
-            path.addCurve(to: p3, control1: cp2, control2: cp1)
-            path.addLine(to: points[points.count - 2])
-            path.addLine(to: points.last ?? .zero)
-        } else {
-            cp2 = controlPoint(from: p2, prevCP: cp2)
-            cp1 = oneEndedControlPoint(points: (p3, p2))
-            path.addCurve(to: p3, control1: cp2, control2: cp1)
-        }
-        
-        return path
     }
     
     private func midpoint(between: (CGPoint, CGPoint)) -> CGPoint {

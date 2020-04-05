@@ -41,12 +41,10 @@ public struct LineChart: View {
                                                           design: self.design.verticalGridLineDesign)
                                     }
                                     ForEach(self.model.data) { inputData in
-                                        SingleLine(xvalues: inputData.xvalues,
-                                                   yvalues: inputData.yvalues,
+                                        SingleLine(data: inputData,
                                                    xlim: self.model.xlim,
                                                    ylim: self.model.ylim,
-                                                   proxy: reader,
-                                                   type: inputData.plotType)
+                                                   proxy: reader)
                                             .foregroundColor(inputData.color)
                                     }
                                 }
