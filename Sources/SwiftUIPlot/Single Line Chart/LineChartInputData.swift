@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  LineChartInputData.swift
 //  
 //
 //  Created by Andreas Gejl on 04/04/2020.
@@ -14,9 +14,17 @@ public struct LineChartInputData: Identifiable {
     public let id: UUID = UUID()
     let xvalues: [Double]
     let yvalues: [Double]
-    let plotType: PlotType = .stroke()
-    let curveType: CurveType = .cubicBezier
-    let color: Color = .black
+    let plotType: PlotType
+    let curveType: CurveType
+    let color: Color
+    
+    public init(xvalues: [Double] = [], yvalues: [Double], plotType: PlotType = .stroke(), curveType: CurveType = .cubicBezier, color: Color = .black) {
+        self.xvalues = xvalues.count > 0 ? xvalues : yvalues.enumerated().map { Double($0.offset) }
+        self.yvalues = yvalues
+        self.plotType = plotType
+        self.curveType = curveType
+        self.color = color
+    }
     
     public enum PlotType {
         case stroke(width: CGFloat = 1.0, dashFreq: CGFloat = 2.0)
