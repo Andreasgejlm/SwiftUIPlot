@@ -19,6 +19,7 @@ struct SingleLine: View {
     init(xvalues: [Double], yvalues: [Double], ylim: [Double], proxy: GeometryProxy, type: LineChartInputData.PlotType) {
         self.xvalues = xvalues
         self.yvalues = yvalues
+        self.ylim = ylim
         self.proxy = proxy
         self.type = type
     }
