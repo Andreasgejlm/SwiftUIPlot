@@ -43,6 +43,7 @@ public struct LineChart: View {
                                     ForEach(self.model.data) { inputData in
                                         SingleLine(xvalues: inputData.xvalues,
                                                    yvalues: inputData.yvalues,
+                                                   ylim: self.model.ylim,
                                                    proxy: reader,
                                                    type: inputData.plotType)
                                             .foregroundColor(inputData.color)

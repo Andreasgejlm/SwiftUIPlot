@@ -27,7 +27,7 @@ public struct LineChartInputData: Identifiable {
     }
     
     public enum PlotType {
-        case stroke(width: CGFloat = 1.0, dashFreq: CGFloat = 2.0)
+        case stroke(width: CGFloat = 2.0, dashFreq: CGFloat = 1.0)
         case fill
     }
 
