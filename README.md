@@ -18,7 +18,9 @@ Then, at the top of the file, insert `import SwiftUIPlot`.
 ## Line Chart
 Simple line chart with ability to stroke or fill lines for foreground and background effects.
 
-|![Simple initializations](https://i.imgur.com/nlmXyjY.png "Simple inits") | ![Modifiers](https://i.imgur.com/U6XDrzr.png "Modifier usage") |  ![Modifiers](https://i.imgur.com/QlqvvyO.png "Modifier usage") |
+|   |   |   |
+| ------------- | -------- | ----- |
+|![Simple initializations](https://i.imgur.com/nlmXyjY.png "Simple inits") | ![Modifiers](https://i.imgur.com/U6XDrzr.png "Modifier usage") | ![Modifiers](https://i.imgur.com/QlqvvyO.png "Modifier usage") |
 
 ### Usage
 The line chart can be initialized in a number of ways:
