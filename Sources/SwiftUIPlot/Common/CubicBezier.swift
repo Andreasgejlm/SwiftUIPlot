@@ -55,7 +55,7 @@ struct CubicBezier: Shape {
         p1 = points[0]
         p2 = points[1]
         path.move(to: p1)
-        if points.count == 2 && !closed{
+        if points.count == 2{
             path.addLine(to: p2)
             return path
         } else if points.count == 4 && closed {
