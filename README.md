@@ -14,7 +14,6 @@ Go to `File -> Swift Packages -> Add Package Dependency` and paste the url to th
 
 Then, at the top of the file, insert `import SwiftUIPlot`.
 
-
 ## Line Chart
 Simple line chart with ability to stroke or fill lines for foreground and background effects.
 
