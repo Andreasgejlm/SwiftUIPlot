@@ -44,14 +44,14 @@ struct CubicBezier: Shape {
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
+        if points.count < 2 {
+            return path
+        }
         var p1: CGPoint = .zero
         var p2: CGPoint = .zero
         var p3: CGPoint = .zero
         var cp1: CGPoint = .zero
         var cp2: CGPoint = .zero
-        if points.count < 2 {
-            return path
-        }
         p1 = points[0]
         p2 = points[1]
         path.move(to: p1)
@@ -61,6 +61,7 @@ struct CubicBezier: Shape {
         } else if points.count == 4 && closed {
             path.addLines(points)
             return path
+            
         }
         
         let closedOffset: Int = closed ? 2 : 0
