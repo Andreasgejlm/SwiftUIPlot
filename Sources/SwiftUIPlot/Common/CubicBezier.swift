@@ -61,7 +61,6 @@ struct CubicBezier: Shape {
         } else if points.count <= 4 && closed {
             path.addLines(points)
             return path
-            
         }
         
         let closedOffset: Int = closed ? 2 : 0
