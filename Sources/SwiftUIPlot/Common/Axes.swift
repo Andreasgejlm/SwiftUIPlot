@@ -114,6 +114,9 @@ func linspace(lim: [Double], N: Int) -> [Double] {
     var arr: [Double] = []
     let min = lim.min() ?? 0
     let max = lim.max() ?? 1
+    if min == max {
+        return (0..<N).map { 0 }
+    }
     let h = (max - min) / Double(N - 1)
     for i in stride(from: min, to: max + h, by: h) {
         arr.append(i)
