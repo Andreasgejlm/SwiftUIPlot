@@ -90,5 +90,3 @@ The appearance of the LineChart view can, in addition to the default view modifi
 | `.horizontalGridStyle` | Modifies appearance of horizontal grid lines.** | `gridLineColor?`, `gridLineWidth?`, `gridLineDashFrequency?` |
 | `.verticalGridStyle` | Modifies appearance of vertical grid lines.** | `gridLineColor?`, `gridLineWidth?`, `gridLineDashFrequency?` |
 | `.shaded` | Colors the area under the curve with the provided color. | `shadowColor?` |
-
-
