@@ -40,7 +40,7 @@ struct xAxis: View {
                                 .font(self.design.axisFont)
                                 .foregroundColor(self.design.axisTextColor)
                                 .frame(width: self.tickWidth)
-                                .offset(x: CGFloat(i) * (reader.size.width) / CGFloat((self.N - 1)) - reader.size.width/2.0,
+                                .offset(x: CGFloat(i) * (reader.size.width) / CGFloat((self.N - 1)),
                                     y: 0.0)
                         }
                     }
@@ -85,7 +85,7 @@ struct yAxis: View {
     func calculateHeight(index: Int, height: CGFloat) -> CGFloat {
         let value: Double = Double(snappedValues[index])
         let pxPerVal: CGFloat = height / CGFloat(span)
-        let newHeight: CGFloat = height - CGFloat(value - ylim[0]) * pxPerVal - height / 2
+        let newHeight: CGFloat = height - CGFloat(value - ylim[0]) * pxPerVal
         return newHeight
     }
 
