@@ -93,7 +93,7 @@ struct yAxis: View {
     var body: some View {
         GeometryReader { reader in
             ZStack(alignment: .leading) {
-                ForEach((0..<self.N), id: \.self) {i in
+                ForEach((0..<self.snappedValues.count), id: \.self) {i in
                     ZStack {
                         if self.design.showAxisText {
                             Text(String(self.snappedValues[i]))
@@ -115,7 +115,7 @@ func linspace(lim: [Double], N: Int) -> [Double] {
     let min = lim.min() ?? 0
     let max = lim.max() ?? 1
     if min == max {
-        return (0..<N).map { 0 }
+        return [min]
     }
     let h = (max - min) / Double(N - 1)
     for i in stride(from: min, to: max + h, by: h) {
